@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Payment extends Model
 {
@@ -42,10 +43,10 @@ class Payment extends Model
     }
 
     /**
-     * Get the payments associated with the bill.
+     * Get the parent commentable model (post or video).
      */
-    public function payments()
+    public function payable(): MorphTo
     {
-        return $this->hasMany(Payment::class);
+        return $this->morphTo();
     }
 }

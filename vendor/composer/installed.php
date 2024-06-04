@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '1e3d3826da69d9f13a3a67b29499db54457fc455',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -57,6 +57,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'deployer/deployer' => array(
+            'pretty_version' => 'v7.4.0',
+            'version' => '7.4.0.0',
+            'reference' => 'b438dc22545ab2ecc67d79c80c7a79c156de3599',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../deployer/deployer',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'dflydev/dot-access-data' => array(
             'pretty_version' => 'v3.0.2',
@@ -470,9 +479,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '1e3d3826da69d9f13a3a67b29499db54457fc455',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

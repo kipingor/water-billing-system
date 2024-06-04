@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('billing_contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone', 20)->nullable()->unique();

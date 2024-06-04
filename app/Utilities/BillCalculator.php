@@ -3,7 +3,6 @@
 namespace App\Utilities;
 
 use App\Models\Meter;
-use App\Models\MeterReading;
 use Illuminate\Support\Facades\Config;
 
 class BillCalculator
@@ -19,18 +18,7 @@ class BillCalculator
     {
         $totalConsumption = 0;
 
-
-        // Retrieve the latest meter reading
-        $latestReading = $meter->meterReadings()->latest()->first();
-
-        // Retrieve the previous meter reading
-        $previousReading = $meter->meterReadings()->latest()->skip(1)->first();
-
-        if (!$latestReading || !$previousReading) {
-            $consumption = 0; // Set consumption to 0 if meter readings are not available
-        } else {
-            $consumption = $latestReading->reading_value - $previousReading->reading_value;
-        }
+        $consumption = self::calculateConsumption($meter);
 
         // Apply rates and calculations to determine the bill amount based on the total consumption
         $billAmount = self::applyRates($consumption);
@@ -54,21 +42,22 @@ class BillCalculator
      * @param  \Illuminate\Database\Eloquent\Collection  $meterReadings
      * @return float
      */
-    protected static function calculateConsumption($meterReadings)
+    protected static function calculateConsumption($meter)
     {
         $consumption = 0;
 
-        if ($meterReadings->count() > 1) {
-            $previousReading = null;
+        // Retrieve the previous meter reading
+        $previousReading = $meter->meterReadings()->latest()->skip(1)->first();
 
-            foreach ($meterReadings as $reading) {
+        if ($meter->meterReadings()->count() > 1) {
+
+            foreach ($meter->meterReadings() as $reading) {
                 if ($previousReading === null) {
-                    $previousReading = $reading;
+                    $previousReading = 0;
                     continue;
                 }
 
                 $consumption += $reading->reading_value - $previousReading->reading_value;
-                $previousReading = $reading;
             }
         }
 

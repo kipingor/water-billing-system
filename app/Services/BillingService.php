@@ -21,9 +21,18 @@ class BillingService
      * @var App\Services\SMSService
      */
     protected $smsService;
-
+    /**
+     * The PDF Service instance.
+     *
+     * @var App\Services\PDFService
+     */
     protected $pdfService;
 
+    /**
+     * The Notofocation Service instance.
+     *
+     * @var App\Services\NotificationService
+     */
     protected $notificationService;
 
     public function __construct(SMSService $smsService, PDFService $pdfService, NotificationService $notificationService)
@@ -46,6 +55,7 @@ class BillingService
             $meter = Meter::findOrFail($data['meter_id']);
             $dueDays = Config::get('billing.due_days');
             $dueDate = now()->addDays($dueDays);
+            $unpaidBills = Bill::where('meter_id', $data['meter_id'])->where('status', ['due','partially paid','overdue'])->get();
 
             $totalConsumption = 0;
 

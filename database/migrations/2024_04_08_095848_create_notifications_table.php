@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->morphs('notifiable');
             $table->string('type');
             $table->text('message');
             $table->enum('channel', ['email', 'sms', 'push'])->default('email');

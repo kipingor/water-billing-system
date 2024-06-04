@@ -19,7 +19,7 @@ class MeterReadingFactory extends Factory
         return [
             'meter_id' => \App\Models\Meter::factory(),
             'reading_date' => $this->faker->date(),
-            'reading_value' => $this->faker->randomFloat(2, 0, 1000),
+            'reading_value' => $this->faker->randomFloat(2, 0, 200),
             'employee_id' => \App\Models\User::factory(),
             'reading_type' => $this->faker->randomElement(['manual', 'automatic']),
         ];

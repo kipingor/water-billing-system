@@ -1,7 +1,7 @@
 <div x-data="billCreationComponent()" x-init="loadData()" @click.away="closeModal()">
     <x-button type="button" @click="openModal()">Create a new water Bill</x-button>
 
-    <div x-show="showModal" style="background-color: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+    <div x-show="showModal" style="background-color: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;" x-cloak>
         <template x-if="form.validating">
             <div>Validating...</div>
         </template>

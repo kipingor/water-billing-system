@@ -17,7 +17,7 @@ x-init="loadData()"
         :actions="[
             [
                 'label' => 'View',
-                'class' => 'text-indigo-600 hover:text-indigo-900',
+                'class' => 'text-sky-600 hover:text-sky-900',
                 'handler' => '$dispatch(\'open-modal\', { name: \'billModal\', modalData: item })',
             ],
         ]"

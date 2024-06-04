@@ -16,7 +16,7 @@ use App\Notifications\BillNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class BillController extends Controller
 {
@@ -74,18 +74,27 @@ class BillController extends Controller
             DB::commit();
 
             BillCreatedEvent::dispatch($bill);
-            return response()->json(['message' => 'Bills generated successfully']);
-            // return new BillResource($bill);
-            
 
-            // Redirect back to the same page
+            $meters = Meter::with('customer', 'lastReading')->get();
             
+            return response()->json([
+                'status' => 'success',
+                'meters' => $meters,
+            ]);
 
             
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Error in BillController@store: ' . $e->getMessage());
-            return response()->json(['error' => 'Error processing request: ' . $e->getMessage()], 500);
+
+            Session::flash('alert', [
+                'message' => 'Error processing request: ' . $e->getMessage(),
+                'type' => 'error',
+                'position' => 'top-right'
+            ]);
+
+            return response()->json(['status' => 'Seems something went wrong!!']);
+            
         }        
     }
 

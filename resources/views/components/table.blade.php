@@ -3,7 +3,7 @@
 <div x-data="dynamicTableData()" x-init="loadData()">
     <div class="flex justify-between mb-4">
         <div>
-            <input type="text" id="searchTerm" x-model="searchTerm" placeholder="Search..." class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            <input type="text" id="searchTerm" x-model="searchTerm" placeholder="Search..." class="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 <template x-for="item in filteredData" :key="item.id">
-                    <tr>
+                    <tr class="odd:bg-white even:bg-slate-50">
                         @foreach($headers as $header)
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="item['{{ $header['key'] }}']"></td>
                         @endforeach

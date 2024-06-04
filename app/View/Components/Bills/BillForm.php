@@ -26,7 +26,7 @@ class BillForm extends Component
     public function render(): View|Closure|string
     {
         return view('components.bills.bill-form', [
-            'meters' => Meter::where('meter_status', 'active')->with('customer')->get(),
+            'meters' => Meter::where('meter_status', 'active')->with('customer', 'lastReading')->get(),
         ]);
     }
 }

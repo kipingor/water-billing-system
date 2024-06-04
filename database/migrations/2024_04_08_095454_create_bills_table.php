@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('meter_id')->constrained()->onDelete('cascade');
+            $table->foreignId('meter_id')->constrained()->restrictOnDelete();
             $table->string('billing_period');
             $table->date('due_date');
             $table->decimal('amount', 10, 2);

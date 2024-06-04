@@ -309,6 +309,52 @@
             "install-path": "../carbonphp/carbon-doctrine-types"
         },
         {
+            "name": "deployer/deployer",
+            "version": "v7.4.0",
+            "version_normalized": "7.4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deployphp/deployer.git",
+                "reference": "b438dc22545ab2ecc67d79c80c7a79c156de3599"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deployphp/deployer/zipball/b438dc22545ab2ecc67d79c80c7a79c156de3599",
+                "reference": "b438dc22545ab2ecc67d79c80c7a79c156de3599",
+                "shasum": ""
+            },
+            "time": "2024-04-17T20:55:49+00:00",
+            "bin": [
+                "dep"
+            ],
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Medvedev",
+                    "email": "anton@medv.io"
+                }
+            ],
+            "description": "Deployment Tool",
+            "homepage": "https://deployer.org",
+            "support": {
+                "docs": "https://deployer.org/docs",
+                "issues": "https://github.com/deployphp/deployer/issues",
+                "source": "https://github.com/deployphp/deployer"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/antonmedv",
+                    "type": "github"
+                }
+            ],
+            "install-path": "../deployer/deployer"
+        },
+        {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
             "version_normalized": "3.0.2.0",
@@ -10283,6 +10329,7 @@
     "dev": true,
     "dev-package-names": [
         "brianium/paratest",
+        "deployer/deployer",
         "doctrine/deprecations",
         "fakerphp/faker",
         "fidry/cpu-core-counter",

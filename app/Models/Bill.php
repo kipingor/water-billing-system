@@ -8,6 +8,7 @@ use App\Traits\HasTaxes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Bill extends Model
 {
@@ -37,6 +38,14 @@ class Bill extends Model
     ];
 
     /**
+     * Get all of the bill's payments.
+     */
+    public function payments()
+    {
+        return $this->morphMany(Payment::class, 'payable');
+    }
+
+    /**
      * Get the customer associated with the bill.
      */
     public function meter()
@@ -46,13 +55,10 @@ class Bill extends Model
     
 
     /**
-     * Get the payments associated with the bill.
+     * Generate Bill PDF.
+     *
+     * @return \Barryvdh\DomPDF\PDF
      */
-    public function payments()
-    {
-        return $this->hasMany(Payment::class);
-    }
-
     public function pdf()
     {
         $customer = $this->meter->customer;
@@ -69,5 +75,10 @@ class Bill extends Model
         // return $pdf->stream('bill.pdf');
 
         return $pdf;
+    }
+
+    public function meterReadings()
+    {
+        return $this->belongsToMany(MeterReading::class, 'billed_meter_readings', 'bill_id', 'previous_reading_id', 'latest_reading_id');
     }
 }

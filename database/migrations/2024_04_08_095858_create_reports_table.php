@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->dateTime('end_date');
             $table->json('filters')->nullable();
             $table->json('data');
-            $table->foreignId('generated_by')->nullable()->constrained('employees', 'id')->onDelete('set null');
+            $table->foreignId('generated_by')->nullable()->constrained('employees', 'id')->nullOnDelete();
             $table->timestamps();
         });
     }

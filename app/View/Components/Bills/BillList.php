@@ -3,6 +3,7 @@
 namespace App\View\Components\Bills;
 
 use Closure;
+use App\Models\Bill;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 

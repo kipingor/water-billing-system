@@ -64,7 +64,8 @@ class MeterReadingSeeder extends Seeder
                         if ($bill->status === 'paid' || $bill->status === 'partially paid') { 
                             $paymentAmount = $bill->status === 'paid' ? $bill->amount : rand(1, $bill->amount - 100);
                             $payment = Payment::factory()->create([
-                                'bill_id' => $bill->id,
+                                'payable_id' => $bill->id,
+                                'payable_type' => get_class($bill),
                                 'amount' => $paymentAmount,
                                 'payment_date' => $bill->due_date->addDays(rand(1, 30)) // Payment date after the due date
                             ]);

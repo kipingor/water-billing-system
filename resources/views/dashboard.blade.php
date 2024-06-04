@@ -17,7 +17,7 @@
                     <x-bills.new-bill />
                     
                     <x-dashboard-overview />
-                    <x-transaction />
+                    {{-- <x-transaction /> --}}
                 </div>
             </div>
         </div>

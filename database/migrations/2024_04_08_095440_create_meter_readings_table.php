@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('meter_readings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('meter_id')->constrained()->onDelete('cascade');
+            $table->foreignId('meter_id')->constrained()->restrictOnDelete();
             $table->date('reading_date');
             $table->decimal('reading_value', 10, 2);
             $table->foreignId('employee_id')->nullable()->constrained('users', 'id')->onDelete('set null');

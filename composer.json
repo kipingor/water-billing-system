@@ -18,6 +18,7 @@
         "twilio/sdk": "^7.16"
     },
     "require-dev": {
+        "deployer/deployer": "^7.4",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.29",
         "laravel/pint": "^1.0",

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('meters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->string('meter_number')->unique();
             $table->string('location');
             $table->enum('meter_type', ['analog', 'digital'])->default('analog');

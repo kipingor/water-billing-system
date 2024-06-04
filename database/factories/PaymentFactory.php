@@ -25,11 +25,30 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'bill_id' => \App\Models\Bill::factory(), // Assuming Bill model exists and has a factory
             'payment_date' => $this->faker->date(),
             'amount' => $this->faker->randomFloat(2, 0, 1000), // Random amount between 0 and 1000
             'payment_method' => $this->faker->randomElement(['mpesa', 'cash', 'bank_transfer', 'other']),
             'reference_number' => $this->faker->optional()->uuid,
         ];
+    }
+
+    /**
+     * Indicate that the Payments should be created for a Bill.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function forBills()
+    {
+        return $this->for(\App\Models\Bill::factory(), 'payable');
+    }
+
+    /**
+     * Indicate that the Payments should be created for a Meter.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function forMeters()
+    {
+        return $this->for(\App\Models\Meter::factory(), 'payable');
     }
 }
